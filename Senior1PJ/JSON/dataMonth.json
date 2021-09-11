@@ -1,0 +1,255 @@
+[
+    {
+        
+        "firstName": "Krittamet",
+        "lastName": "Chuwongworaphinit",
+        "building": "KING DAVID",
+        "room": "233",
+        "birthDate": "June 2, 2000",
+        "phoneNo": "092-315-2166",
+        "signin": [
+            {
+                "month": 1,
+                "status": 1,
+                "dateToPay": "12/01/21",
+                "bill": {
+                    "roomPrice": 7000,
+                    "elec": 1200,
+                    "water": 400,
+                    "deposit": 39000,
+                    "punish": 2400,
+                    "fakeTotal": 50000.00,
+                    "comment": [
+                        {
+                            "Object": "Chair broke",
+                            "punishPrice": 200
+                        },
+                        {
+                            "Object": "Table broke",
+                            "punishPrice": 200
+                        },
+                        {
+                            "Object": "late to pay",
+                            "punishPrice": 500
+
+                        },
+                        {
+                            "Object": "Window broke",
+                            "punishPrice": 1500
+
+                        }
+                    ]
+                   
+                }
+            },
+            {
+                "month": 2,
+                "status": 1,
+                "dateToPay": "12/02/21",
+                "bill": {
+                    "roomPrice": 7000,
+                    "elec": 1300,
+                    "water": 350,
+                    "punish": 0,
+                    "deposit": 0,
+                    "fakeTotal": 9850.00,
+                    "Other": [
+                        {
+                            "Object": "",
+                            "punishPrice": 0
+
+                        },
+                        {
+                            "Object": "",
+                            "punishPrice": 0
+
+                        },
+                    ]
+
+                }
+            },
+            {
+                "month": 3,
+                "status": 1,
+                "dateToPay": "12/03/21",
+                "bill": {
+                    "roomPrice": 7000,
+                    "elec": 1100,
+                    "water": 200,
+                    "punish": 1000,
+                    "deposit": 0,
+                    "fakeTotal": 9300.00,
+                    "punishDetail": [
+                        {
+                            "Object": "Chair broke",
+                            "punishPrice": 200
+                        },
+                        {
+                            "Object": "Table broke",
+                            "punishPrice": 200
+                        },
+                        {
+                            "Object": "late to pay",
+                            "punishPrice": 500
+
+                        }
+                    ]
+
+                }
+            },
+            {
+                "month": 4,
+                "status": 1,
+                "dateToPay": "12/04/21",
+                "bill": {
+                    "roomPrice": 7000,
+                    "elec": 600,
+                    "water": 430,
+                    "punish": 1100,
+                    "deposit": 0,
+                    "fakeTotal": 9130.00,
+                    "punishDetail": [
+                        {
+                            "Object": "2 Chair broke",
+                            "punishPrice": 400
+                        },
+                        {
+                            "Object": "Table broke",
+                            "punishPrice": 200
+                        },
+                        {
+                            "Object": "late to pay",
+                            "punishPrice": 500
+
+                        }
+                    ]
+
+                }
+            },
+            {
+                "month": 5,
+                "status": 0,
+                "dateToPay": "12/05/21",
+                "bill": {
+                    "roomPrice": 7000,
+                    "elec": 800,
+                    "water": 1200,
+                    "punish": 800,
+                    "deposit": 0,
+                    "fakeTotal": 9800.00,
+                    "punishDetail": [
+                        {
+                            "Object": "Chair broke",
+                            "punishPrice": 100
+                        },
+                        {
+                            "Object": "Table broke",
+                            "punishPrice": 200
+                        },
+                        {
+                            "Object": "late to pay",
+                            "punishPrice": 500
+
+                        }
+                    ]
+
+                }
+            }
+        ]
+    },
+    {
+        "firstName": "Jirapat",
+        "lastName": "Theking",
+        "building": "KING DAVID",
+        "room": "134",
+        "birthDate": "Feb 2, 2000",
+        "phoneNo": "092-315-3456",
+        "signin": [
+            {
+                "month": 1,
+                "status": 1,
+                "dateToPay": "12/01/21",
+                "bill": {
+                    "roomPrice": 10000,
+                    "elec": 1200,
+                    "water": 400,
+                    "deposit": 39000,
+                    "punish": 2400,
+                    "fakeTotal": 53000.00,
+                    "punishDetail": [
+                        {
+                            "Object": "Chair broke",
+                            "punishPrice": 200
+                        },
+                        {
+                            "Object": "Table broke",
+                            "punishPrice": 200
+                        },
+                        {
+                            "Object": "late to pay",
+                            "punishPrice": 500
+
+                        },
+                        {
+                            "Object": "Window broke",
+                            "punishPrice": 1500
+
+                        }
+                    ]
+                   
+                }
+            },
+            {
+                "month": 2,
+                "status": 1,
+                "dateToPay": "12/02/21",
+                "bill": {
+                    "roomPrice": 10000,
+                    "elec": 1300,
+                    "water": 350,
+                    "punish": 1200,
+                    "deposit": 0,
+                    "fakeTotal": 12850.00,
+                    "punishDetail": [
+                        {
+                            "Object": "late to pay",
+                            "punishPrice": 500
+
+                        }
+                    ]
+
+                }
+            },
+            {
+                "month": 3,
+                "status": 1,
+                "dateToPay": "12/03/21",
+                "bill": {
+                    "roomPrice": 10000,
+                    "elec": 1100,
+                    "water": 200,
+                    "punish": 1000,
+                    "deposit": 0,
+                    "fakeTotal": 12300.00,
+                    "punishDetail": [
+                        {
+                            "Object": "Chair broke",
+                            "punishPrice": 200
+                        },
+                        {
+                            "Object": "Table broke",
+                            "punishPrice": 200
+                        },
+                        {
+                            "Object": "late to pay",
+                            "punishPrice": 500
+
+                        }
+                    ]
+
+                }
+            }
+        ]
+    }
+
+]

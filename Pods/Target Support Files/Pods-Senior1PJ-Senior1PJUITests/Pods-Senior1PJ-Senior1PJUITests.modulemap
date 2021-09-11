@@ -1,0 +1,6 @@
+framework module Pods_Senior1PJ_Senior1PJUITests {
+  umbrella header "Pods-Senior1PJ-Senior1PJUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
