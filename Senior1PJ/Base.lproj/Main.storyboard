@@ -13,11 +13,11 @@
         <scene sceneID="eOe-kM-9Zq">
             <objects>
                 <viewController storyboardIdentifier="detail_announce" modalPresentationStyle="fullScreen" id="R8n-Dd-PdE" customClass="DetailNews" customModule="Senior1PJ" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="Lz5-o3-SCa">
+                    <view key="view" contentMode="scaleToFill" id="Lz5-o3-SCa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="31y-ex-fUR">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="31y-ex-fUR">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZzX-eS-20A">

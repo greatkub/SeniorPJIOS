@@ -10,26 +10,26 @@ import Alamofire
 
 class PetitionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
  
-    
-
+    //Search bar
     @IBOutlet var searchbar: UISearchBar!
-    var filterData: [[String:Any]]!
+    var filterData: [[String: Any]]!
     
     let searchController = UISearchController()
     
     @IBAction func goBackk(_ sender: Any) {
         self.navigationController?.popToRootViewController(animated: true)
-
-        
         self.dismiss(animated: true)
-        
     }
+    
     @IBOutlet var myTableView: UITableView!
+    
+    //Should be Model
     var dataJ = [[String:Any]]()
     
     let refreshTB = UIRefreshControl()
-
+    
     @IBOutlet var date: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,25 +42,44 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
         refreshTB.tintColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
         refreshTB.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         
+        // Search bar
         myTableView.addSubview(refreshTB)
         searchbar.delegate = self
+        filterData = dataJ
+        
+
 
 //        title = "Search"
 //        searchController.searchResultsUpdater =  self
 //        searchbar = searchController
         
-        
-        
     }
-    
-    let arr = ["cat", "dog","cow"]
-    
     
     func searchBar(_ searchBar: UISearchBar,
                    textDidChange searchText: String) {
     
+        if searchText.isEmpty {
+            filterData = dataJ
+        } else {
+            filterData = dataJ.filter { j -> Bool in
+                if let title = j["title"] as? String {
+                    print("TITLE: \(title) - SEARCH: \(searchText)")
+                    print("IS CONTAIN: \(title.lowercased().contains(searchText.lowercased()))")
+                    return title.lowercased().contains(searchText.lowercased())
+                }
+                
+                return false
+            }
+        }
         
         
+
+//
+//        filterData = searchText.isEmpty ? dataJ : dataJ.filter { (item: String) -> Bool in
+//            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+//        }
+        
+        myTableView.reloadData()
     }
     
     @objc func refreshData() {
@@ -75,7 +94,7 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return dataJ.count
+        return filterData.count
     }
     
     var tag = 0
@@ -84,13 +103,13 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
         let vc = storyboard?.instantiateViewController(identifier: "detailpetitionvc") as! DetailPetitionVC
         let i = indexPath.section
         
-        vc.title2 = dataJ[i]["title"] as! String
-        vc.status = dataJ[i]["statusInfo"] as! String
-        let date = dataJ[i]["petitionDate"] as? String
+        vc.title2 = filterData[i]["title"] as! String
+        vc.status = filterData[i]["statusInfo"] as! String
+        let date = filterData[i]["petitionDate"] as? String
         vc.date =  reformat2(str: date!, toThis: "dd/MM/yyyy")
-        vc.content = dataJ[i]["description"] as! String
+        vc.content = filterData[i]["description"] as! String
         vc.num = indexPath.section
-        vc.dataJ = dataJ
+        vc.dataJ = filterData
         
         self.present(vc, animated: true, completion: nil)
     }
@@ -101,11 +120,11 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
         let index = indexPath.section
         
         
-        cell.title_lb.text = dataJ[index]["title"] as? String
-        cell.content_lb.text = dataJ[index]["description"] as? String
-        let date = dataJ[index]["petitionDate"] as? String
+        cell.title_lb.text = filterData[index]["title"] as? String
+        cell.content_lb.text = filterData[index]["description"] as? String
+        let date = filterData[index]["petitionDate"] as? String
         cell.date_lb.text = reformat2(str: date!, toThis: "dd/MM/yyyy")
-        cell.status_lb.text = dataJ[index]["statusInfo"] as? String
+        cell.status_lb.text = filterData[index]["statusInfo"] as? String
         
         
         
@@ -113,13 +132,8 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-      
-
         return 116
     }
-    
- 
-    
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexpath: IndexPath) {
 //        let tabbar =  tabBarController as! BaseTabBarController
@@ -157,9 +171,6 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
 
 
         }
-        
-       
-        
     }
     
     @objc func showMiracle() {
@@ -213,16 +224,11 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
     }
-    
-    
-    
-
-    
 }
-
 
 extension PetitionViewController: UIViewControllerTransitioningDelegate {
     internal func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         PetitionPresentation(presentedViewController: presented, presenting: presenting)
     }
 }
+
