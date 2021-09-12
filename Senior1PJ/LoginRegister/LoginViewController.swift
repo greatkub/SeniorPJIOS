@@ -12,12 +12,17 @@ class LoginViewController: UIViewController {
 
     @IBOutlet var usernameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
+    
+    @IBOutlet var habitatTitle: UILabel!
+    @IBOutlet var residenceHall: UILabel!
+    
     var dataJ = [String:Any]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         initializeHideKeyboard()
+        renderUI()
     }
     
     @IBAction func btnLoginClick(_ sender: UIButton) {
@@ -131,6 +136,12 @@ class LoginViewController: UIViewController {
                 
             }
         })
+    }
+    
+    private func renderUI() {
+        let attributedString = NSMutableAttributedString(string: habitatTitle.text ?? "")
+        attributedString.addAttribute(NSAttributedString.Key.kern, value: CGFloat(3.0), range: NSRange(location: 0, length: attributedString.length))
+        habitatTitle.attributedText = attributedString
     }
     
 

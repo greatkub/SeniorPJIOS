@@ -83,7 +83,7 @@ class BaseTabBarController: UITabBarController {
        tabBar.items![0].image = resizeImage(image: UIImage(named: "stack")!, targetSize: CGSize(width: 25.0, height: 25.0))
 //       tabBarController?.tabBar.items![1].title = "Profile"
         tabBar.items![1].image = resizeImage(image: UIImage(named: "wallet")!, targetSize: CGSize(width: 22.0, height: 22.0))
-        tabBar.items![2].image = resizeImage(image: UIImage(named: "userProfile")!, targetSize: CGSize(width: 22.0, height: 22.0))
+        tabBar.items![2].image = resizeImage(image: UIImage(named: "menu")!, targetSize: CGSize(width: 22.0, height: 22.0))
         
    }
     

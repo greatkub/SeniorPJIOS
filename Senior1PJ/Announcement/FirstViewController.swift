@@ -11,7 +11,7 @@ import Alamofire
 import AlamofireImage
 
 class FirstViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
+    
     @IBOutlet var sliderCollectionView: UICollectionView!
     
     @IBOutlet var LogoName: UILabel!
@@ -26,7 +26,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     @IBOutlet var bringTobackBody: UIView!
     let count = 14
-//    var currentPage: Int =  0
+    //    var currentPage: Int =  0
     var list_image_important_anouncement: [String] = ["0","1","2"]
     
     var kept = 0
@@ -55,18 +55,18 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         
         
-
-//        self.bringToFrontHeader.bringSubviewToFront(myTableView)
+        
+        //        self.bringToFrontHeader.bringSubviewToFront(myTableView)
         /// Resizing UITableView height to fit content
         /// Collection View Cell height 70 + footer 12 = 82
         
         getJSONData()
         dateHeader.text = datetoday
         print(datetoday)
-       // if count == 1 {
-//        } else {
-//            heightConstant.constant = CGFloat(Double(count) * 82 - Double(count))
-//        }
+        // if count == 1 {
+        //        } else {
+        //            heightConstant.constant = CGFloat(Double(count) * 82 - Double(count))
+        //        }
         
         myTableView.separatorStyle = .none
         
@@ -77,28 +77,28 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         page_controller.currentPage = 0
         DispatchQueue.main.async {
-              self.timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
-           }
-   
+            self.timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
+        }
+        
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//        //table cell
-//        if let destination = segue.destination as? DetailNews {
-//            destination.detailRowAt = kept
-//            destination.newsList = newsList
-//            destination.date = date
-//
-//        }
-//
-//
-//
-//    }
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //
+    //        //table cell
+    //        if let destination = segue.destination as? DetailNews {
+    //            destination.detailRowAt = kept
+    //            destination.newsList = newsList
+    //            destination.date = date
+    //
+    //        }
+    //
+    //
+    //
+    //    }
     
     
     
-   
+    
     
     /*-----------------------------------------------------------------*/
     /*                                                                 */
@@ -108,8 +108,8 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     var newsList = [[String:Any]]()
     var generalnews = [[String:Any]]()
     var importantnews = [[String:Any]]()
-
-
+    
+    
     
     func getJSONData() {
         
@@ -118,17 +118,17 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
             return
         }
         let url = URL(fileURLWithPath: path)
-      let urlFile2 = "https://536a20dd-fe69-4914-8458-6ad1e9b3ce18.mock.pstmn.io/news"
-    
+        let urlFile2 = "https://536a20dd-fe69-4914-8458-6ad1e9b3ce18.mock.pstmn.io/news"
+        
         let jameAPI = "\(currentJSON)/api/v1/announcement/announcements"
-//        let urlFile = "http://haritibhakti.com/jsondata/vegetables.json"
+        //        let urlFile = "http://haritibhakti.com/jsondata/vegetables.json"
         AF.request(jameAPI).responseJSON { (response) in
             switch response.result
             {
             case .success(_):
-//                let jsondata = response.value as! [[String:Any]]?
-//                self.newsList = jsondata!
-
+                //                let jsondata = response.value as! [[String:Any]]?
+                //                self.newsList = jsondata!
+                
                 let jsondata = response.value as! [[String:Any]]?
                 
                 self.generalnews = (jsondata?.filter{$0["type"] as! String == "General News"})!
@@ -136,8 +136,8 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
                 
                 
                 self.page_controller.numberOfPages = self.importantnews.count
-
-//                self.generalnews = jsondata.filter{$0["post"] != "new"}
+                
+                //                self.generalnews = jsondata.filter{$0["post"] != "new"}
                 print(self.generalnews)
                 self.myTableView.reloadData()
                 self.sliderCollectionView.reloadData()
@@ -155,12 +155,12 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     
     
-            /*-----------------------------------------------------------------*/
-            /*                                                                 */
-            /*                          COLLECTION VIEW                        */
-            /*                                                                 */
-            /*-----------------------------------------------------------------*/
-                                    ///Important news.swift
+    /*-----------------------------------------------------------------*/
+    /*                                                                 */
+    /*                          COLLECTION VIEW                        */
+    /*                                                                 */
+    /*-----------------------------------------------------------------*/
+    ///Important news.swift
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -173,12 +173,12 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     /*  SIZE FOR ITEM AT -> SET ELEMENT IN CONTENT FIT TO COLLECTION VIEW SIZE  */
     /*  IN THIS CASE-> IMAGE VIEW IS EXPANDED TO FIT THE COLLECTION VIEW SIZE   */
     /*--------------------------------------------------------------------------*/
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize.init(
-                width: collectionView.bounds.width,
-                height: collectionView.bounds.height
-            )
+        return CGSize.init(
+            width: collectionView.bounds.width,
+            height: collectionView.bounds.height
+        )
     }
     
     
@@ -204,7 +204,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
         
         
-//        cell.image_announce.image = UIImage(named: list_image_important_anouncement[indexPath.row])
+        //        cell.image_announce.image = UIImage(named: list_image_important_anouncement[indexPath.row])
         cell.image_announce.layer.cornerRadius = 0
         
         cell.image_announce.contentMode = .scaleToFill
@@ -218,64 +218,64 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-
+        
         page_controller.currentPage = indexPath.row
         
     }
     
     
     @objc func changeImage() {
-             
-         if counter < importantnews.count {
-              let index = IndexPath.init(item: counter, section: 0)
-              self.sliderCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+        
+        if counter < importantnews.count {
+            let index = IndexPath.init(item: counter, section: 0)
+            self.sliderCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
             page_controller.currentPage = counter
-              counter += 1
-         } else {
-              counter = 0
-              let index = IndexPath.init(item: counter, section: 0)
-              self.sliderCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
+            counter += 1
+        } else {
+            counter = 0
+            let index = IndexPath.init(item: counter, section: 0)
+            self.sliderCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
             page_controller.currentPage = counter
-               counter = 1
-           }
-      }
+            counter = 1
+        }
+    }
     
     
     
     
-        /*-----------------------------------------------------------------*/
-        /*                                                                 */
-        /*                         VC to DetailNews                        */
-        /*                                                                 */
-        /*-----------------------------------------------------------------*/
+    /*-----------------------------------------------------------------*/
+    /*                                                                 */
+    /*                         VC to DetailNews                        */
+    /*                                                                 */
+    /*-----------------------------------------------------------------*/
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-//        let vc = self.storyboard?.instantiateViewController(identifier: "detail_announce") as! DetailNews
-//
-////        vc.image_from_tab_announcement = list_image_important_anouncement[indexPath.row]
-//        vc.detailRowAt = kept
-//        vc.newsList = generalnews
-//        vc.date = date
-//
-//
-//        self.navigationController?.pushViewController(vc, animated: true)
-//        print("Collection view at row \(indexPath.row)")
+        
+        //        let vc = self.storyboard?.instantiateViewController(identifier: "detail_announce") as! DetailNews
+        //
+        ////        vc.image_from_tab_announcement = list_image_important_anouncement[indexPath.row]
+        //        vc.detailRowAt = kept
+        //        vc.newsList = generalnews
+        //        vc.date = date
+        //
+        //
+        //        self.navigationController?.pushViewController(vc, animated: true)
+        //        print("Collection view at row \(indexPath.row)")
         
         
         let vc = self.storyboard?.instantiateViewController(identifier: "detail_announce") as! DetailNews
-
-//        vc.image_from_tab_announcement = list_image_important_anouncement[indexPath.row]
+        
+        //        vc.image_from_tab_announcement = list_image_important_anouncement[indexPath.row]
         vc.detailRowAt = indexPath.section
         vc.dataJ = importantnews
         vc.date = date
         vc.postid = importantnews[indexPath.section]["id"] as! Int
-
+        
         self.navigationController?.pushViewController(vc, animated: true)
         
-//        performSegue(withIdentifier: "showDetail", sender: self)
-
+        //        performSegue(withIdentifier: "showDetail", sender: self)
+        
     }
     
     
@@ -293,48 +293,48 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
 
 
 
-         /*-----------------------------------------------------------------*/
-         /*                                                                 */
-         /*                           TABLE VIEW                            */
-         /*                                                                 */
-         /*-----------------------------------------------------------------*/
-                                ///general news.swift
+/*-----------------------------------------------------------------*/
+/*                                                                 */
+/*                           TABLE VIEW                            */
+/*                                                                 */
+/*-----------------------------------------------------------------*/
+///general news.swift
 
 
 extension FirstViewController:  UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-
+        
         let index = indexPath.section
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GeneralNews
         //image_cell title_label general_label date_announce
-//        var datejson = newsList[index]["createdAt"] as! String
+        //        var datejson = newsList[index]["createdAt"] as! String
         
-
-//        let dateStr = str.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ssZ")
         
-//        var str = "2021-05-23T06:35:47.409Z"
-//        var str2 = "12:16:45"
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-//        var dateFromStr = dateFormatter.date(from: str)!
-//        var timeFromDate = dateFormatter.string(from: dateFromStr)
-//        print("vdf2 \(timeFromDate)")
+        //        let dateStr = str.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ssZ")
+        
+        //        var str = "2021-05-23T06:35:47.409Z"
+        //        var str2 = "12:16:45"
+        //        let dateFormatter = DateFormatter()
+        //        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        //        var dateFromStr = dateFormatter.date(from: str)!
+        //        var timeFromDate = dateFormatter.string(from: dateFromStr)
+        //        print("vdf2 \(timeFromDate)")
         
         var str = generalnews[index]["announceDate"] as! String
         
-
+        
         //Set up a DateFormatter for input dates in "Internet" date format"
         var inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-//        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
-
-
+        //        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+        
+        
         //Set up an output date formatter (in the local time zone)
         var outputFormatter = DateFormatter()
         outputFormatter.dateFormat = "d/MM/yyyy"
-
+        
         if let formattedtoDate = inputFormatter.date(from: str) {
             let formattedtoString = outputFormatter.string(from: formattedtoDate)
             cell.date_announce.text = formattedtoString
@@ -343,20 +343,20 @@ extension FirstViewController:  UITableViewDataSource, UITableViewDelegate{
         } else {
             print("Can't convert the string \(str) to a Date")
         }
-//        var time = Date()
-//        var formatter = DateFormatter()
-//        formatter.dateFormat = "MMM d yyyy, h:mm:ss a"
-//        let formattedtoDate = formatter.string(from: time)
-//
-//
-//        let dateFormatterPrint = DateFormatter()
-//        dateFormatterPrint.dateFormat = "MMM dd,yyyy"
-//
-//        let date: NSDate? = dateFormatterPrint.string(from: "2016-02-29 12:24:26")
+        //        var time = Date()
+        //        var formatter = DateFormatter()
+        //        formatter.dateFormat = "MMM d yyyy, h:mm:ss a"
+        //        let formattedtoDate = formatter.string(from: time)
+        //
+        //
+        //        let dateFormatterPrint = DateFormatter()
+        //        dateFormatterPrint.dateFormat = "MMM dd,yyyy"
+        //
+        //        let date: NSDate? = dateFormatterPrint.string(from: "2016-02-29 12:24:26")
         
-//        let formattedtoString = formatter.string(from: formattedtoDate)
-
-//        print("cc12\(formattedtoDate)")
+        //        let formattedtoString = formatter.string(from: formattedtoDate)
+        
+        //        print("cc12\(formattedtoDate)")
         
         cell.general_label.text = generalnews[index]["title"] as? String
         let urlImage = generalnews[index]["imageUrl"] as? String
@@ -373,13 +373,13 @@ extension FirstViewController:  UITableViewDataSource, UITableViewDelegate{
             }
             
         }
-
+        
         
         return cell
     }
     
     
-
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -388,26 +388,26 @@ extension FirstViewController:  UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
-      }
+    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-
+        
         return 11
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let footerView = UIView()
         footerView.backgroundColor = UIColor.clear
-
+        
         return footerView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-//        var num:Int = Int(screenSize.height / 14)
-//        heightConstant.constant = CGFloat(Double(newsList.count) * Double(num + 11))
-//
-//        return CGFloat(num)
+        //        var num:Int = Int(screenSize.height / 14)
+        //        heightConstant.constant = CGFloat(Double(newsList.count) * Double(num + 11))
+        //
+        //        return CGFloat(num)
         
         heightConstant.constant = CGFloat(Double(generalnews.count) * 81)
         
@@ -417,44 +417,44 @@ extension FirstViewController:  UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         kept = indexPath.section
-
+        
         let vc = self.storyboard?.instantiateViewController(identifier: "detail_announce") as! DetailNews
-
-//        vc.image_from_tab_announcement = list_image_important_anouncement[indexPath.row]
+        
+        //        vc.image_from_tab_announcement = list_image_important_anouncement[indexPath.row]
         vc.detailRowAt = kept
         vc.dataJ = generalnews
         vc.date = date
         vc.postid = generalnews[indexPath.section]["id"] as! Int
-
-
+        
+        
         self.navigationController?.pushViewController(vc, animated: true)
-//        print("Collection view at row \(indexPath.row)")
-//        performSegue(withIdentifier: "showDetail", sender: self)
-//        print("selected \(indexPath.section)")
+        //        print("Collection view at row \(indexPath.row)")
+        //        performSegue(withIdentifier: "showDetail", sender: self)
+        //        print("selected \(indexPath.section)")
         
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let destination = segue.destination as? DetailNews {
-//            destination.detailRowAt = kept
-//            destination.newsList = newsList
-//            destination.date = date
-//
-//        }
-//    }
-//
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        if let destination = segue.destination as? DetailNews {
+    //            destination.detailRowAt = kept
+    //            destination.newsList = newsList
+    //            destination.date = date
+    //
+    //        }
+    //    }
+    //
     
     
     
 }
 extension String {
-  func toDate(dateFormat: String) -> Date? {
-
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = dateFormat
-
-    let date: Date? = dateFormatter.date(from: self)
-    return date
-  }
+    func toDate(dateFormat: String) -> Date? {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        
+        let date: Date? = dateFormatter.date(from: self)
+        return date
+    }
 }
 
