@@ -308,9 +308,11 @@ extension OverlayView: UITableViewDelegate, UITableViewDataSource {
                 }
                 
             }
+            
+            let datecom = dataJ[index]["commentDate"] as! String
 
 //            cell.file_image.image
-//            cell.timepost_label.text = "Just now"
+//            cell.timepost_label.text = reformat2(str: datecom, toThis: "dd/MM/yyyy")
 //            cell.myTextLabel.text = dataArray[indexPath.row]
             return cell
 
@@ -319,7 +321,33 @@ extension OverlayView: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexpath: IndexPath) {
+        
+        let commentid = dataJ[indexpath.section]["id"] as! Int
+        
+        let deletePetition = "\(currentJSON)/api/v1/comment/comment/\(commentid)/user/\(currentUserId)"
+        
+        let parameters: [String: Any] = [
+            "isDeleted": true
+        ]
+        
+        
+        if editingStyle == .delete {
+            
+            AF.request(deletePetition, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON(completionHandler: { response in
+//                print(response.response?.statusCode)
+//
+                
+                self.showAlert(title: "\(commentid)", message: "Your petition has been added")
+            })
+            
+            dataJ.remove(at: indexpath.section)
+
+//            getJSONData()
+            self.myTableView.reloadData()
+        }
     
+    }
 }
 
 extension OverlayView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -419,7 +447,7 @@ extension OverlayView { //Post API
             
             self.getJSONData()
 //            self.myTableView.reloadData()
-            self.showAlert(title: "success", message: "yeahh")
+//            self.showAlert(title: "success", message: "yeahh")
             self.commentTextView.text = ""
 
         })

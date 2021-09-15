@@ -67,7 +67,7 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
                     print("IS CONTAIN: \(title.lowercased().contains(searchText.lowercased()))")
                     return title.lowercased().contains(searchText.lowercased())
                 }
-                
+
                 return false
             }
         }
@@ -110,6 +110,10 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
         vc.content = filterData[i]["description"] as! String
         vc.num = indexPath.section
         vc.dataJ = filterData
+        vc.solvedDate = filterData[i]["solvedDate"] as! String
+        
+        
+        
         
         self.present(vc, animated: true, completion: nil)
     }
@@ -125,6 +129,16 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
         let date = filterData[index]["petitionDate"] as? String
         cell.date_lb.text = reformat2(str: date!, toThis: "dd/MM/yyyy")
         cell.status_lb.text = filterData[index]["statusInfo"] as? String
+        
+        if cell.status_lb.text != "Unsolved" {
+            cell.status_lb.textColor = #colorLiteral(red: 0, green: 0.5603182912, blue: 0, alpha: 1)
+            cell.status_lb.text = "Status: Solved"
+        } else {
+            cell.status_lb.textColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+            cell.status_lb.text = "Status: Unsolved"
+
+        }
+      
         
         
         
@@ -166,7 +180,6 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
             self.myTableView.reloadData()
 
             
-//            print("\(indexpath.section)")
             
 
 

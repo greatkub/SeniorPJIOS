@@ -19,6 +19,8 @@ class TotalPaid: UITableViewCell {
     @IBOutlet var logoType_image: UIImageView!
     @IBOutlet var dateToPay: UILabel!
     
+    @IBOutlet var chevronhide: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

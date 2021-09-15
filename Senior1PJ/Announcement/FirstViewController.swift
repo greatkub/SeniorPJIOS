@@ -47,7 +47,8 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     /*                                                                 */
     /*-----------------------------------------------------------------*/
     
-    
+    let refreshTB = UIRefreshControl()
+
     
     
     override func viewDidLoad() {
@@ -80,6 +81,21 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
             self.timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
         }
         
+        
+        refreshTB.tintColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+        refreshTB.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        myTableView.addSubview(refreshTB)
+        self.myTableView.showsHorizontalScrollIndicator = false
+        self.myTableView.showsVerticalScrollIndicator = false
+
+        
+    }
+    
+    @objc func refreshData() {
+        getJSONData()
+        refreshTB.endRefreshing()
+        myTableView.reloadData()
+        sliderCollectionView.reloadData()
     }
     
     //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -108,7 +124,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     var newsList = [[String:Any]]()
     var generalnews = [[String:Any]]()
     var importantnews = [[String:Any]]()
-    
+
     
     
     func getJSONData() {
@@ -151,8 +167,16 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     
     
-    
-    
+//
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return generalnews.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 1
+//    }
+//
     
     
     /*-----------------------------------------------------------------*/
@@ -162,6 +186,9 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     /*-----------------------------------------------------------------*/
     ///Important news.swift
     
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return importantnews.count
+//    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return importantnews.count
@@ -186,7 +213,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImportantNews
-        let index = indexPath.section
+        let index = indexPath.row
         
         let urlImage = importantnews[index]["imageUrl"] as? String
         
@@ -267,10 +294,10 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         let vc = self.storyboard?.instantiateViewController(identifier: "detail_announce") as! DetailNews
         
         //        vc.image_from_tab_announcement = list_image_important_anouncement[indexPath.row]
-        vc.detailRowAt = indexPath.section
+        vc.detailRowAt = indexPath.row
         vc.dataJ = importantnews
         vc.date = date
-        vc.postid = importantnews[indexPath.section]["id"] as! Int
+        vc.postid = importantnews[indexPath.row]["id"] as! Int
         
         self.navigationController?.pushViewController(vc, animated: true)
         

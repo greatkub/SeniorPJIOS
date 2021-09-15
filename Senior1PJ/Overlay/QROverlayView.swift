@@ -50,7 +50,12 @@ class QROverlayView: UIViewController {
         print("HIx3" + total)
         print(date)
         
-        codenamefinancial = withoutCrc16Ewallet + ewallet
+        //v1 real Bank
+//        codenamefinancial = withoutCrc16Ewallet + ewallet
+        
+        //v2 with mock bank
+        codenamefinancial = withoutCrc16Ewallet
+
         print(codenamefinancial)
         
         

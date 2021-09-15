@@ -124,3 +124,13 @@ func reformat2(str:String, toThis:String) -> String {
     
     
 }
+
+func insertComma(a: Double) -> String {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.minimumFractionDigits = 2
+    numberFormatter.maximumFractionDigits = 2
+
+
+    numberFormatter.numberStyle = .decimal
+    return numberFormatter.string(from: NSNumber(value:a))!
+}

@@ -56,10 +56,14 @@ class ShowPayment: UIViewController {
     var monthList = [[String:Any]]()
     var billObj = [[String:Any]]()
     var dataJ = [[String:Any]]()
+    var room = 0
 
     
     /////////////////     //////////////////   /////////////  //////////////  //////////   /////////////
-     
+    let dispatchGroup = DispatchGroup()
+    let refreshTB = UIRefreshControl()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -73,7 +77,6 @@ class ShowPayment: UIViewController {
 //        loadingVC.modalTransitionStyle = .crossDissolve
 //
 //        present(loadingVC, animated: true, completion: nil)
-        
         datehead.adjustsFontSizeToFitWidth = true
         titlehead.adjustsFontSizeToFitWidth = true
         buidinghead.adjustsFontSizeToFitWidth = true
@@ -88,14 +91,37 @@ class ShowPayment: UIViewController {
         self.heightViewBuildingRoom.constant = 74
         self.myTableView.reloadData()
 
-        getJSONData()
+        refreshTB.tintColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+        refreshTB.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        
+        myTableView.addSubview(refreshTB)
+        self.myTableView.showsHorizontalScrollIndicator = false
+        self.myTableView.showsVerticalScrollIndicator = false
+        
+        getJSONData2()
+        
         datehead.text = datetoday
         
     }
+    @objc func refreshData() {
+        getJSONData2()
+        refreshTB.endRefreshing()
+        print("refreshData")
+        myTableView.reloadData()
+    }
  
+//    override func viewWillAppear(_ animated: Bool) {
+//        getJSONData2()
+//        print("show")
+//    }
 
     var kept = 0
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        getJSONData()
+//        myTableView.reloadData()
+//        print("111 Appear")
+//    }
     
     /*-----------------------------------------------------------------*/
     /*                                                                 */
@@ -103,19 +129,49 @@ class ShowPayment: UIViewController {
     /*                                                                 */
     /*-----------------------------------------------------------------*/
     
+    func getJSONData2() {
+
+        let UrlReal = "\(currentJSON)/api/v1/mobile/bill-payment-building/user/\(currentUserId)"
+        
+        AF.request(UrlReal).responseJSON { (response) in
+            switch response.result
+            {
+            case .success(_):
+                if let jsondata = response.value as? [[String:Any]] {
+                    let dataJ2 = jsondata
+                    
+                    self.room =  (dataJ2[0]["roomId"] as? Int)!
+                    print(self.room)
+                   
+                    self.currentBuilding = (dataJ2[0]["buildingName"] as? String)!
+                    self.currentRoom = "Room \(dataJ2[0]["roomNumber"] as! String)"
+
+                 
+                    self.myTableView.reloadData()
+                    self.view.layoutIfNeeded()
+                    print(self.room)
+
+                    self.getJSONData()
+
+                }
+
+            case .failure(let error):
+                print("Error Ovvured \(error.localizedDescription)")
+                self.dispatchGroup.leave()
+
+            }
+        }
+
+    }
+
+    
+    
     
     func getJSONData() {
         
-        //option to use local json file
-        guard let path = Bundle.main.path(forResource: "dataMonth", ofType: "json") else {
-            return
-        }
-        let url1 = URL(fileURLWithPath: path)
-        let UrlReal = "\(currentJSON)/api/v1/mobile/bill-payments/user/\(currentUserId)"
+        let UrlReal = "\(currentJSON)/api/v1/mobile/bill-payment-renting/room/\(room)/user/\(currentUserId)"
 
-//      let urlFile2 = "https://536a20dd-fe69-4914-8458-6ad1e9b3ce18.mock.pstmn.io/news"
-//        let urlFile = "http://haritibhakti.com/jsondata/vegetables.json"
-        
+        print(UrlReal)
         AF.request(UrlReal).responseJSON { (response) in
             switch response.result
             {
@@ -123,9 +179,13 @@ class ShowPayment: UIViewController {
                 if let jsondata = response.value as? [[String:Any]] {
                     self.dataJ = jsondata
                     
-                
-                    self.buidinghead.text = self.dataJ[0]["buildingName"] as? String
-                    self.roomhead.text = "Room \(self.dataJ[0]["roomNumber"] as! String)"
+                    print("This one")
+//                    self.buidinghead.text = self.dataJ[0]["buildingName"] as? String
+//                    self.roomhead.text = "Room \(self.dataJ[0]["roomNumber"] as! String)"
+                    print(jsondata)
+                    self.buidinghead.text = self.currentBuilding
+                        self.roomhead.text = self.currentRoom
+                    
                     self.viewbelowroom.visibility = .gone
                     self.nopayemnt_label.visibility = .gone
                     self.myTableView.reloadData()
@@ -172,7 +232,9 @@ extension ShowPayment:  UITableViewDataSource, UITableViewDelegate{
 
     
     func numToString(a:Int) -> String {
-        var month = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "October", "November", "December"]
+        print(a)
+        var month = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September" , "October", "November", "December"]
+        print("\(month[a-1])")
         return month[a-1]
     }
     

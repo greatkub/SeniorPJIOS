@@ -21,6 +21,9 @@ class TotalDetailViewController: UIViewController {
         NSLayoutConstraint!
     var fees = [[String:Any]]()
     var totalOtherPrice = 0.0
+    var occurpant = 0
+
+    @IBOutlet var note: UILabel!
     let screenSize: CGRect = UIScreen.main.bounds
     let priceArr = [Double]()
     override func viewDidLoad() {
@@ -36,22 +39,24 @@ class TotalDetailViewController: UIViewController {
         
         total.text = insertComma(a: totalOtherPrice) + " THB"
         date_label.text = datetoday
-        
+        print(fees)
+        print(fees[0]["feeTypeName"] as! String)
+        note.text = "Total price is divided by the number of tenents (\(occurpant))"
         
     }
     var data = ["Chair lost","Lamp broke ","Pay late","Table break"]
     
 //    var data = ["Chair lost"]
     
-    func insertComma(a: Double) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.minimumFractionDigits = 2
-        numberFormatter.maximumFractionDigits = 2
-
-
-        numberFormatter.numberStyle = .decimal
-        return numberFormatter.string(from: NSNumber(value:a))!
-    }
+//    func insertComma(a: Double) -> String {
+//        let numberFormatter = NumberFormatter()
+//        numberFormatter.minimumFractionDigits = 2
+//        numberFormatter.maximumFractionDigits = 2
+//
+//
+//        numberFormatter.numberStyle = .decimal
+//        return numberFormatter.string(from: NSNumber(value:a))!
+//    }
     
 
 
@@ -66,18 +71,21 @@ extension TotalDetailViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TotalDetailCell
         
-        cell.detail_label.text = data[indexPath.section]
+        
+        cell.detail_label.text = fees[0]["feeTypeName"] as! String
+        cell.priceDetail_label.text = insertComma(a: fees[0]["feeTypePrice"] as! Double) + " THB"
+
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if data.count <= 3 {
+        if fees.count <= 3 {
             heightConstraint.constant = (screenSize.height / 7.3)
         } else {
             heightConstraint.constant = CGFloat(Double(data.count) * 28)
         }
 
-        return data.count
+        return fees.count
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

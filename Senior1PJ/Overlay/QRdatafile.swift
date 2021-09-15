@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+var billid = 0
 var amountToPay = "0.50"
 var phonePromptpay = "943542367"
 let forPromtpayAndIdcard = "700"
@@ -42,7 +42,10 @@ let c8 = "6304"
 let withoutCrc16 = c1 + c2forPhone + c3 + c4ifPhone + c4ifPhoneNo + c5 + c6ifamountnotEmpty + c6AddYourmoney + c6amount + c7 + c8
 
 //For Ewallet
-let withoutCrc16Ewallet = c1forE + c2ForEwallet + c3forEwallet + eWalletid + c5 + c6ifempty + "03" + "76454\(c6AddYourmoney)" + c6amount + c8
+//let withoutCrc16Ewallet = c1forE + c2ForEwallet + c3forEwallet + eWalletid + c5 + c6ifempty + "03" + "76454\(c6AddYourmoney)" + c6amount + c8
+
+//Ewallet test mock with fakebank
+let withoutCrc16Ewallet = String(amountToPay.count) + amountToPay + "amount" + "id" + String(billid) + String(String(billid).count)
 
 
 //For promptpay

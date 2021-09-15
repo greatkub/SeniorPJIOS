@@ -22,12 +22,16 @@ class WaterElecViewController: UIViewController {
     @IBAction func goback(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    @IBOutlet var note: UILabel!
     
     var current = ""
     var previous = ""
     var usage = 0
     var priceperunit = 0.0
+    var occurpant = 0
+    var eachLogo = ["bed","flash","drop","money","purse"]
     
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,18 +44,21 @@ class WaterElecViewController: UIViewController {
         date_label.adjustsFontSizeToFitWidth = true
         billpayment_label.adjustsFontSizeToFitWidth = true
         
-        total.text = insertComma(a: 566) + " THB"
+        total.text = insertComma(a: Double(usage) * priceperunit) + " THB"
         current_label.text = current
         previous_label.text = previous
         unit_label.text = String(usage)
-        priceperunit_label.text = String(priceperunit)
+        priceperunit_label.text = insertComma(a: Double(priceperunit))
+        
+        note.text = "Total price is divided by the number of tenents (\(occurpant))"
+        
         
         date_label.text = datetoday
         
     }
     
     func iconBeSelected() {
-        logotypebill_image.image = UIImage(named: imagedatabill[selecticon])
+        logotypebill_image.image = UIImage(named: eachLogo[selecticon])
         
     }
     

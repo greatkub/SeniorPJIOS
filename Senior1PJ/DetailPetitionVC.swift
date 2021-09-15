@@ -16,12 +16,16 @@ class DetailPetitionVC: UIViewController {
     @IBOutlet var date_lb: UILabel!
     @IBOutlet var myimage: UIImageView!
     @IBOutlet var content_tv: UILabel!
+    @IBOutlet var datesolve_lb: UILabel!
+    
+    
     var title2 = ""
     var status = ""
     var date = ""
     var content = ""
     var num = 0
     var dataJ = [[String:Any]]()
+    var solvedDate = ""
 
     
     override func viewDidLoad() {
@@ -29,8 +33,21 @@ class DetailPetitionVC: UIViewController {
 
         title_lb.text = title2
         status_lb.text = status
-        date_lb.text = date
+        date_lb.text = "Post at " + date
         content_tv.text = content
+        
+        if status_lb.text != "Unsolved" {
+            status_lb.textColor = #colorLiteral(red: 0, green: 0.5603182912, blue: 0, alpha: 1)
+            status_lb.text = "Status: Solved"
+
+            datesolve_lb.text =  reformat2(str: solvedDate, toThis: "dd/MM/yyyy HH:mm") + " hrs."
+        } else {
+            status_lb.textColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+            status_lb.text = "Status: Unsolved"
+
+            datesolve_lb.visibility = .gone
+        }
+        
         // Do any additional setup after loading the view.
         let urlImage = dataJ[num]["image"] as? String
         

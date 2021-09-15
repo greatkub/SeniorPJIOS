@@ -45,7 +45,7 @@ class TotalPayment: UIViewController {
     var detailPayList = [[String:Any]]()
     var Totalprice = 0.0
 
-
+    
     @IBOutlet var dateBill_label: UILabel!
     @IBOutlet var heighDetailConstaint: NSLayoutConstraint!
     @IBOutlet var datehead: UILabel!
@@ -194,13 +194,25 @@ extension TotalPayment:  UITableViewDataSource, UITableViewDelegate{
 //
         Totalprice = dataJ[0]["totalPrice"] as! Double
         
+        let transId = dataJ[0]["userRentingTransactionId"] as! [[String:Any]]?
+        let thistransid = transId?[0]["userTransactionId"] as! Int
+        
+        billid = thistransid
 //        cell.topMonet_label.text = "\(Double(Totalprice).insertComma()) THB"
         cell.topMonet_label.text = priceArr[index]
 //        priceArr
         cell.logoType_image.image = UIImage(named: eachLogo[index])
         
+        
+        
+        
 
         cell.typeName_label.text = eachTypeName[index]
+//        var eachTypeName = ["Room","Electricity","Water","Others","Deposit"]
+
+        if (index == 0) {
+            cell.chevronhide.visibility = .gone
+        }
 
         sumPayment.text = Double(Totalprice).insertComma()
         
@@ -290,6 +302,7 @@ extension TotalPayment:  UITableViewDataSource, UITableViewDelegate{
         //Other
         let fees = dataJ[rowAt]["fees"] as! [[String:Any]]?
         let totalOtherPrice = dataJ[rowAt]["totalOtherPrice"] as! Double
+        let occupant = dataJ[rowAt]["numberOfTenant"] as! Int
         
         
         
@@ -308,12 +321,15 @@ extension TotalPayment:  UITableViewDataSource, UITableViewDelegate{
                 vc.usage = waterUsage
                 vc.priceperunit = waterperunit
             }
+            vc.occurpant = occupant
             vc.selecticon = index
             self.present(vc, animated: true, completion: nil)
         }
         else if index == 3 {
             vc2.fees = fees!
             vc2.totalOtherPrice = totalOtherPrice
+            vc2.occurpant = occupant
+
             self.present(vc2, animated: true, completion: nil)
         }
        

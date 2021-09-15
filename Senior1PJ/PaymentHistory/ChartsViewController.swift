@@ -8,6 +8,7 @@ class ChartsViewController: UIViewController, ChartViewDelegate {
     @IBOutlet var buildingname: UILabel!
     @IBOutlet var roomname: UILabel!
     
+    @IBOutlet var nopayment_lb: UILabel!
     @IBOutlet var title_lavel: UILabel!
     @IBOutlet var date_lb: UILabel!
     @IBAction func goBack(_ sender: Any) {
@@ -83,11 +84,12 @@ class ChartsViewController: UIViewController, ChartViewDelegate {
             
         }
         else if sender.selectedSegmentIndex == 3 {
-            self.realurl = "  \(currentJSON)/api/v1/filter/filter-other/user/\(currentUserId)/Other/history"
+            self.realurl = "\(currentJSON)/api/v1/filter/filter-other/user/\(currentUserId)/Other/history"
             
             //            self.chartMonthList = [String]()
             //            self.chartTotalList = [Double]()
-            barChartView.notifyDataSetChanged() // let the chart know it's data changed
+//            barChartView.notifyDataSetChanged()
+            // let the chart know it's data changed
             
             
             self.getJSONData()
@@ -133,7 +135,12 @@ class ChartsViewController: UIViewController, ChartViewDelegate {
                 print("Hi")
                 
                 self.myTableView.reloadData()
-                self.order()
+                if(self.dataJ.count != 0) {
+                    self.nopayment_lb.visibility = .gone
+                    self.order()
+                } else {
+                    print("brabra")
+                }
                 
             case .failure(let error):
                 print("Error Ovvured \(error.localizedDescription)")
@@ -149,7 +156,7 @@ class ChartsViewController: UIViewController, ChartViewDelegate {
             case .success(_):
                 
                 if let jsondata = response.value as? [[String:Any]] {
-                    self.dataJ = jsondata
+//                    self.dataJ = jsondata
                     
                     let inbuild = jsondata[0]["building"] as? [[String:Any]]
                     
@@ -322,7 +329,7 @@ extension ChartsViewController: UITableViewDelegate, UITableViewDataSource {
         print(datethis)
         cell.date_label.text = reformat(str: datethis, toThis: "dd/MM/yy")
         //        var alltotal = inBill["fakeTotal"] as! Double
-        let amountJson = dataJ[index]["payAmount"] as! Int
+        let amountJson = dataJ[index]["payAmount"] as! Double
         print(amountJson)
         
         cell.amount_label.text = Double(amountJson).insertComma()
