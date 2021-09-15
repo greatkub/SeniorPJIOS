@@ -3094,7 +3094,7 @@ contains at least one digit (0 - 9)</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rll-4e-WVS">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="u6115219@au.edu" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rll-4e-WVS">
                                 <rect key="frame" x="20" y="267" width="374" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="iEn-ap-FT7"/>
@@ -3103,7 +3103,7 @@ contains at least one digit (0 - 9)</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KgA-VC-SgP">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0999999896" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KgA-VC-SgP">
                                 <rect key="frame" x="20" y="317" width="374" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="F59-rM-Kos"/>
@@ -4401,7 +4401,7 @@ contains at least one digit (0 - 9)</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8bO-vX-cO8">
-                                <rect key="frame" x="20" y="305" width="369" height="40"/>
+                                <rect key="frame" x="20" y="305" width="374" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="eX7-yq-1Pz"/>
                                 </constraints>
@@ -4410,7 +4410,7 @@ contains at least one digit (0 - 9)</string>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="08X-Ol-p5J">
-                                <rect key="frame" x="20" y="355" width="369" height="40"/>
+                                <rect key="frame" x="20" y="355" width="374" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="rjB-Ok-2Y8"/>
                                 </constraints>
@@ -4419,7 +4419,7 @@ contains at least one digit (0 - 9)</string>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSY-hY-2Mz">
-                                <rect key="frame" x="20" y="793" width="369" height="40"/>
+                                <rect key="frame" x="20" y="782" width="374" height="40"/>
                                 <color key="backgroundColor" red="0.89411771299999998" green="0.94117647410000005" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="gIG-yq-kV9"/>
@@ -4434,7 +4434,7 @@ contains at least one digit (0 - 9)</string>
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tds-w2-iVO">
-                                <rect key="frame" x="20" y="455" width="369" height="40"/>
+                                <rect key="frame" x="20" y="455" width="374" height="40"/>
                                 <color key="backgroundColor" red="0.2941176593" green="0.36078432199999999" blue="0.51372551919999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="MD9-SQ-hQB"/>
@@ -4452,7 +4452,7 @@ contains at least one digit (0 - 9)</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HABITAT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuM-xj-uNk">
-                                <rect key="frame" x="195" y="134" width="129" height="39"/>
+                                <rect key="frame" x="195" y="134" width="130.5" height="39.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PuM-xj-uNk" secondAttribute="height" multiplier="135:41" id="cUL-uP-cAi"/>
                                 </constraints>
@@ -4461,7 +4461,7 @@ contains at least one digit (0 - 9)</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Residence Hall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="369-Hw-xYL">
-                                <rect key="frame" x="195" y="173" width="113.5" height="30"/>
+                                <rect key="frame" x="195" y="173.5" width="115" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="369-Hw-xYL" secondAttribute="height" multiplier="119:31" id="NKb-Xh-QRL"/>
                                 </constraints>
@@ -4470,7 +4470,7 @@ contains at least one digit (0 - 9)</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LOGOZ" translatesAutoresizingMaskIntoConstraints="NO" id="qg7-d3-mrF">
-                                <rect key="frame" x="12" y="65" width="201" height="202"/>
+                                <rect key="frame" x="12" y="65" width="206" height="191"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="qg7-d3-mrF" secondAttribute="height" multiplier="220:221" id="eo1-Zy-buP"/>
                                 </constraints>
@@ -4481,14 +4481,14 @@ contains at least one digit (0 - 9)</string>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y58-Za-Y2A">
-                                <rect key="frame" x="40" y="751" width="329" height="1"/>
+                                <rect key="frame" x="40" y="740" width="334" height="1"/>
                                 <color key="backgroundColor" red="0.84705877299999999" green="0.84705877299999999" blue="0.84705877299999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="oNm-io-OCw"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3eg-Mo-Zwb">
-                                <rect key="frame" x="182.5" y="729" width="44" height="44"/>
+                                <rect key="frame" x="185" y="718" width="44" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSB-N3-FWy">
                                         <rect key="frame" x="11" y="12" width="23" height="21"/>

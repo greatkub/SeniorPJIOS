@@ -72,7 +72,7 @@ class PetitionOverlayView: UIViewController, UIImagePickerControllerDelegate & U
             "Title": title_TF.text!,
             "Description": desciption_tv.text!,
             "Image": linkImageStr,
-               "UserId": currentUserId
+            "UserId": currentUserId
         ]
         
         AF.request(urlpost, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON(completionHandler: { response in

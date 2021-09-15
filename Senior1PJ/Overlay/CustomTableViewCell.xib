@@ -75,6 +75,7 @@
             <connections>
                 <outlet property="myTextLabel" destination="PJg-ml-sYC" id="5al-O4-n8W"/>
                 <outlet property="profile" destination="vAD-qK-fqo" id="2rj-k8-7d6"/>
+                <outlet property="timepost_label" destination="QHY-wU-UiI" id="kCn-Cx-YLr"/>
                 <outlet property="userNameLabel" destination="atX-eq-L2M" id="pq8-S0-ffi"/>
             </connections>
             <point key="canvasLocation" x="182.60869565217394" y="-26.450892857142858"/>
