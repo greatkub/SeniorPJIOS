@@ -319,7 +319,7 @@ extension OverlayView: UITableViewDelegate, UITableViewDataSource {
             let datecom = dataJ[index]["commentDate"] as! String
 
 //            cell.file_image.image
-//            cell.timepost_label.text = reformat2(str: datecom, toThis: "dd/MM/yyyy")
+            cell.timepost_label.text = reformat2(str: datecom, toThis: "dd/MM/yyyy")
 //            cell.myTextLabel.text = dataArray[indexPath.row]
             return cell
 
@@ -331,6 +331,7 @@ extension OverlayView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexpath: IndexPath) {
         
         let commentid = dataJ[indexpath.section]["id"] as! Int
+        let userId = dataJ[indexpath.section]["userId"] as! Int
         
         let deletePetition = "\(currentJSON)/api/v1/comment/comment/\(commentid)/user/\(currentUserId)"
         
@@ -345,18 +346,32 @@ extension OverlayView: UITableViewDelegate, UITableViewDataSource {
         
         if editingStyle == .delete {
             
-            AF.request(deletePetition, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON(completionHandler: { response in
-//                print(response.response?.statusCode)
+//<<<<<<< HEAD
+//            AF.request(deletePetition, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON(completionHandler: { response in
+////                print(response.response?.statusCode)
+////
 //
-                
-                self.showAlert(title: "\(commentid)", message: "Your comment has been delete")
-                
-            })
-            
-            dataJ.remove(at: indexpath.section)
+//                self.showAlert(title: "\(commentid)", message: "Your comment has been delete")
+//
+//            })
+//
+//            dataJ.remove(at: indexpath.section)
+//=======
+            if (currentUserId == userId) {
+                AF.request(deletePetition, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON(completionHandler: { response in
+    //                print(response.response?.statusCode)
+//>>>>>>> 6fdeebc1f81aa1ba46b25ee5fb2e57aba96212fb
 
-//            getJSONData()
-            self.myTableView.reloadData()
+                    self.showAlert(title: "Deleted", message: "Your comment is deleted")
+                })
+                
+                dataJ.remove(at: indexpath.section)
+    //            getJSONData()
+                self.myTableView.reloadData()
+            } else {
+                self.showAlert(title: "Error", message: "This comment is not yours")
+            }
+           
         }
     
     }
@@ -450,13 +465,13 @@ extension OverlayView { //Post API
 //            "username": usernameTF.text!,
 //            "password": passwordTF.text!
             "Message": commentTextView.text!, //commenttextview
-              "PostAnnouncementId": postid,
-              "UserId": currentUserId
+            "PostAnnouncementId": postid,
+            "UserId": currentUserId
         ]
 
         AF.request(postUrl, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON(completionHandler: { response in
             print(response.response?.statusCode)
-            
+                        
             self.getJSONData()
 //            self.myTableView.reloadData()
 //            self.showAlert(title: "success", message: "yeahh")

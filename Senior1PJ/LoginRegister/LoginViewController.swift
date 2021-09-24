@@ -83,9 +83,10 @@ class LoginViewController: UIViewController {
                     currentProfile = self.dataJ["profileURL"] as! String
                     
                     var today = self.dataJ["todayDay"] as! String
-                    
+                    print(today)
                     datetoday = reformat2(str: String(today.dropLast(6)), toThis: "dd MMM yyyy")
                     print(datetoday + "this")
+                    print(datetoday)
                     
 //                    let isFirst = self.dataJ["isFirst"] as! Bool
 //                    print(isFirst)

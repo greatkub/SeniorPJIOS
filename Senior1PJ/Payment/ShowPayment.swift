@@ -216,7 +216,7 @@ extension ShowPayment:  UITableViewDataSource, UITableViewDelegate{
         let str = dataJ[index]["date"] as! String
 
         
-        cell.datePay_label.text = reformat(str: str, toThis: "d/MM/yyyy")
+        cell.datePay_label.text = reformat(str: str, toThis: "dd/MM/yyyy")
         cell.monthLabel.text = numToString(a:  Int(reformat(str: str, toThis: "M"))!)
         cell.paidLabel.text = (dataJ[index]["statusInfo"] as? String)?.uppercased()
 
