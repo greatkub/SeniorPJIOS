@@ -28,7 +28,7 @@ class AnnounceDetail {
 }
 
 
-class DetailNews: UIViewController {
+class DetailNews: UIViewController, DetailNewsDelegate {
     
     var image_from_tab_announcement = ""
     var showDetail: AnnounceDetail?
@@ -90,6 +90,14 @@ class DetailNews: UIViewController {
         numberOfComment()
 
     }
+    
+    
+    func didDismiss() {
+        print("Closed")
+        numberOfComment()
+        numberOfLike()
+    }
+    
     
     
     func getJSONData() {
@@ -249,6 +257,8 @@ class DetailNews: UIViewController {
     
     @objc func showMiracle() {
         let slideVC = OverlayView()
+        slideVC.delegate = self
+
         slideVC.postid = postid
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
@@ -271,3 +281,7 @@ extension DetailNews: UIViewControllerTransitioningDelegate {
     
 }
 
+
+protocol DetailNewsDelegate {
+    func didDismiss()
+}

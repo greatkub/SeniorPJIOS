@@ -186,8 +186,11 @@ class ShowPayment: UIViewController {
                     self.buidinghead.text = self.currentBuilding
                         self.roomhead.text = self.currentRoom
                     
-                    self.viewbelowroom.visibility = .gone
-                    self.nopayemnt_label.visibility = .gone
+                    if self.dataJ.count > 0 {
+                        self.viewbelowroom.visibility = .gone
+                        self.nopayemnt_label.visibility = .gone
+                        
+                    }
                     self.myTableView.reloadData()
                     self.view.layoutIfNeeded()
                 }

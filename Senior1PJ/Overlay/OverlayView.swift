@@ -41,7 +41,8 @@ class OverlayView: UIViewController {
     
     @IBOutlet weak var slideIdicator: UIView!
     @IBOutlet weak var subscribeButton: UIView!
-    
+    var delegate: DetailNewsDelegate?
+
     
     @IBOutlet var bottomFrameTextField: NSLayoutConstraint!
     
@@ -65,6 +66,12 @@ class OverlayView: UIViewController {
     
     @IBAction func cancel_viewframe(_ sender: Any) {
         imagePickerControllerDidCancel(UIImagePickerController())
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let vc = delegate else { return }
+        vc.didDismiss()
     }
 
     
@@ -331,6 +338,10 @@ extension OverlayView: UITableViewDelegate, UITableViewDataSource {
             "isDeleted": true
         ]
         
+        let alertController = UIAlertController(title: "Success", message:
+                                                    "Your petition has been added", preferredStyle: .alert)
+        
+       
         
         if editingStyle == .delete {
             
@@ -338,7 +349,8 @@ extension OverlayView: UITableViewDelegate, UITableViewDataSource {
 //                print(response.response?.statusCode)
 //
                 
-                self.showAlert(title: "\(commentid)", message: "Your petition has been added")
+                self.showAlert(title: "\(commentid)", message: "Your comment has been delete")
+                
             })
             
             dataJ.remove(at: indexpath.section)

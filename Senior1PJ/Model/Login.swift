@@ -10,6 +10,7 @@ import UIKit
 struct LoginModel : Encodable {
     let login: String
     let password: String
+
 }
 
 struct LoginResponseModel {

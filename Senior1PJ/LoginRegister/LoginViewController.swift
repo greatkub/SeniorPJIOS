@@ -84,8 +84,8 @@ class LoginViewController: UIViewController {
                     
                     var today = self.dataJ["todayDay"] as! String
                     
-                    datetoday = reformat(str: String(today.dropLast(6)), toThis: "dd MMM yyyy")
-                    print(datetoday)
+                    datetoday = reformat2(str: String(today.dropLast(6)), toThis: "dd MMM yyyy")
+                    print(datetoday + "this")
                     
 //                    let isFirst = self.dataJ["isFirst"] as! Bool
 //                    print(isFirst)

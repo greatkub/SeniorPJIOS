@@ -20,8 +20,10 @@ class PetitionOverlayView: UIViewController, UIImagePickerControllerDelegate & U
     @IBOutlet var myImage: UIImageView!
     @IBOutlet var desciption_tv: UITextView!
     @IBOutlet var submitoutlet: UIButton!
+    
     var linkImageStr = ""
     
+    var delegate: PetitionViewControllerDelegate?
 
     private let storage = Storage.storage().reference()
     
@@ -54,6 +56,11 @@ class PetitionOverlayView: UIViewController, UIImagePickerControllerDelegate & U
 //        task.resume()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        guard let vc = delegate else { return }
+//        vc.didDismiss()
+    }
     
     
  
@@ -78,9 +85,19 @@ class PetitionOverlayView: UIViewController, UIImagePickerControllerDelegate & U
         AF.request(urlpost, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON(completionHandler: { response in
             print(response.response?.statusCode)
             
-            self.showAlert(title: "Successfully", message: "Your petition has been added")
-            
+//            self.showAlert(title: "Successfully", message: "Your petition has been added")
+            let alertController = UIAlertController(title: "Success", message:
+                                                        "Your petition has been added", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
+                self.dismiss(animated: true, completion: {
+                    guard let vc = self.delegate else { return }
+                    vc.didDismiss()
 
+                })
+            }))
+            self.present(alertController, animated: true, completion: nil)
+            
+            
         })
     }
     

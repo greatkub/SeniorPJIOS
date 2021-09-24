@@ -8,7 +8,15 @@
 import UIKit
 import Alamofire
 
-class PetitionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class PetitionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, PetitionViewControllerDelegate {
+    
+    func didDismiss() {
+        print("Closed")
+        getJSONData()
+
+    }
+    
+    
  
     //Search bar
     @IBOutlet var searchbar: UISearchBar!
@@ -22,6 +30,7 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     @IBOutlet var myTableView: UITableView!
+    
     
     //Should be Model
     var dataJ = [[String:Any]]()
@@ -53,6 +62,15 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
 //        searchController.searchResultsUpdater =  self
 //        searchbar = searchController
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("Hey will Appear")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("Hey viewDidAppear")
+
     }
     
     func searchBar(_ searchBar: UISearchBar,
@@ -152,7 +170,7 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexpath: IndexPath) {
 //        let tabbar =  tabBarController as! BaseTabBarController
         let petitionid = dataJ[indexpath.section]["id"] as! Int
-        
+        print(petitionid)
         let deletePetition = "\(currentJSON)/api/v1/petition/delete-petition/\(petitionid)"
         
         let parameters: [String: Any] = [
@@ -186,9 +204,13 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    
+ 
+    
     @objc func showMiracle() {
         let slideVC = PetitionOverlayView()
-
+       
+        slideVC.delegate = self
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         self.present(slideVC, animated: true, completion: nil)
@@ -201,6 +223,12 @@ class PetitionViewController: UIViewController, UITableViewDataSource, UITableVi
         showMiracle()
 
     }
+    
+
+
+    
+    
+    
     
     
     func getJSONData() {
@@ -245,3 +273,6 @@ extension PetitionViewController: UIViewControllerTransitioningDelegate {
     }
 }
 
+protocol PetitionViewControllerDelegate {
+    func didDismiss()
+}
